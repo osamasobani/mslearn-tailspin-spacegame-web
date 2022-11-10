@@ -6,7 +6,8 @@
 trigger:
 - '*'
 
-pool: MyPool
+pool: 
+vmImage: MyPool
 demands:
   - npm
 
