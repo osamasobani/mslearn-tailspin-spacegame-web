@@ -8,7 +8,6 @@ trigger:
 
 pool: 
 name: MyPool
-vmImage: 'windows-latest'
 demands:
   - npm
 
