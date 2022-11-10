@@ -48,4 +48,4 @@ steps:
   inputs:
     command: 'build'
     arguments: '--no-restore --configuration Release'
-    projects: '**/*.cspro
+    projects: '**/*.cspro'
