@@ -6,13 +6,14 @@
 trigger:
 - '*'
 
-pool: 
-name: MyPool
-demands:
-  - npm
-
 variables:
   buildConfiguration: 'Release'
+
+pool: 
+  name: MyPool
+  vmImage: 'windows-latest'
+  demands:
+    - npm
 
 steps:
 - task: UseDotNet@2
