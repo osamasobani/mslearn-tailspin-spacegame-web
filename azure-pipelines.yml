@@ -1,24 +1,28 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
 - '*'
 
-variables:
-  buildConfiguration: 'Release'
-
-pool: 
-  name: MyPool
+pool:
+  Name: MyPool
   vmImage: 'ubuntu-22.04'
+  demands:
+  - npm
 
 steps:
 - task: UseDotNet@2
   displayName: 'Use .NET SDK 6.x'
   inputs:
-    packageType: sdk
     version: '6.x'
+
+- task: Npm@1
+  displayName: 'Run npm install'
+  inputs:
+    verbose: false
+
+- script: './node_modules/.bin/node-sass Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'
+  displayName: 'Compile Sass assets'
+
+- task: gulp@1
+  displayName: 'Run gulp tasks'
 
 - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
   displayName: 'Write build info'
@@ -35,8 +39,8 @@ steps:
   inputs:
     command: 'build'
     arguments: '--no-restore --configuration Release'
-    projects: '**/*.cspro'
-    
+    projects: '**/*.csproj'
+
 - task: DotNetCoreCLI@2
   displayName: 'Publish the project - Release'
   inputs:
