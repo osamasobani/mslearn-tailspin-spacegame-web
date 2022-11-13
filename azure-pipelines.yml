@@ -11,7 +11,7 @@ variables:
 
 pool: 
   name: MyPool
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-22.04'
 
 steps:
 - task: UseDotNet@2
