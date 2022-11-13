@@ -13,7 +13,7 @@ pool:
   name: MyPool
   vmImage: 'windows-latest'
   demands:
-    - npm
+    - npm i 
 
 steps:
 - task: UseDotNet@2
