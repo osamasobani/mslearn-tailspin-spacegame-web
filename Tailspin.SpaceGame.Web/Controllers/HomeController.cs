@@ -43,7 +43,8 @@ namespace TailSpin.SpaceGame.Web.Controllers
                 {
                     "Solo",
                     "Duo",
-                    "Trio"
+                    "Trio",
+                    "TestaTrio"
                 },
 
                 GameRegions = new List<string>()
